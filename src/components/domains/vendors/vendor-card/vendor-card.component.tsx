@@ -1,22 +1,33 @@
-import {Link} from "../../../shared";
+import { Link } from "../../../shared";
 import Image from "../../../shared/image/image.component";
-import { isExpressDelivery, deliveryFee } from "../../../../utils";
+import { isExpressDelivery, deliveryFee, classnames } from "../../../../utils";
+import { VendorCard } from './vendor-card.models';
 import styles from './vendor-card.module.scss';
 
-function VendorCard() {
-  return <Link href={'/qwrf'}>
-    <div className={styles.VendorCard}>
+function VendorCard(
+  {
+    link,
+    cover,
+    logo,
+    title,
+    description,
+    isExpress,
+    deliveryPrice,
+    classname
+  }: VendorCard) {
+  return <Link href={link}>
+    <div className={classnames(styles.VendorCard, `${classname}`)}>
       <div className={styles.VendorCard__header}>
         <Image
-          src='https://cdn.snappfood.ir/350x233/uploads/images/vendors/covers/5e01b8a4bcf22.jpg'
+          src={cover}
           alt='vendor'
           layout={'fill'}
         />
         <div
           className={styles.VendorCard__logo}>
           <Image
-            src='https://cdn.snappfood.ir/media/cache/vendor_logo/uploads/images/vendors/logos/5e425b1b4cf0b.jpg'
-            alt='vendor'
+            src={logo}
+            alt={title}
             width={56}
             height={56}
             radius={8}
@@ -26,15 +37,15 @@ function VendorCard() {
       <div className={styles.VendorCard__footer}>
         <div className={styles.VendorCard__titleRate}>
           <h3 className={styles.VendorCard__title}>
-            پیتزا شیلا (پارک ملت)
+            {title}
           </h3>
           <span className={styles.VendorCard__rate}></span>
         </div>
-        <div className={styles.VendorCard__description}>فست‌فود، پیتزا، ساندویچ، برگر</div>
+        <div className={styles.VendorCard__description}>{description}</div>
         <div>
           <div>
-            <span className={styles.VendorCard__deliveryType}>{isExpressDelivery(true)}</span>
-            <span className={styles.VendorCard__deliveryPrice}>{deliveryFee(10000)}</span>
+            <span className={styles.VendorCard__deliveryType}>{isExpressDelivery(isExpress)}</span>
+            <span className={styles.VendorCard__deliveryPrice}>{deliveryFee(deliveryPrice)}</span>
           </div>
         </div>
       </div>
