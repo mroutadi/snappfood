@@ -32,12 +32,12 @@ const apiRequest = (
     config,
     responseTransformer,
     inputTransformer,
-  }: ApiRequest): ((apiData: { apiData?: object }) => Promise<any>) => {
+  }: ApiRequest): ((apiData?: object) => Promise<any>) => {
   const requestConfig: AxiosRequestConfig = {
     ...config,
     method: type
   };
-  return (apiData: { apiData?: object }) => {
+  return (apiData?: object) => {
     const data = inputTransformer ? inputTransformer(apiData) : apiData;
     const finalUrl = isFunction(url) ? url(data) : url;
     try {
