@@ -1,0 +1,73 @@
+.VendorCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  border: solid 0.5px #e6e6e6;
+  box-shadow: 0 2px 12px 0 #0001;
+  border-radius: 6px;
+  overflow: hidden;
+
+  &__header {
+    position: relative;
+    height: 130px;
+  }
+
+  &__logo {
+    background: #fff;
+    width: 64px;
+    height: 64px;
+    padding: 4px;
+    position: absolute;
+    border-radius: 8px;
+    bottom: -16px;
+    right: 8px;
+
+    img {
+      border: 1px solid rgba(64, 64, 64, 0.04);
+    }
+  }
+
+  &__footer {
+    padding: 20px 16px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__titleRate {
+
+  }
+
+  &__title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #404040;
+  }
+
+  &__rate {
+
+  }
+
+  &__description {
+    font-size: 12px;
+    font-weight: 400;
+    color: #404040;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__deliveryType {
+    font-size: 12px;
+    font-weight: 400;
+    color: #a3a3a3;
+    margin-left: 4px;
+  }
+
+  &__deliveryPrice {
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 4px;
+  }
+}
