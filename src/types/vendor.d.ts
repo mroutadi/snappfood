@@ -5,7 +5,7 @@ declare global {
     logo: string,
     title: string,
     description: string,
-    isExpressDelivery: boolean,
+    isExpress: boolean,
     deliveryPrice: number
   }
 }

@@ -1,6 +1,6 @@
 
-interface VendorCard extends Vendor {
+interface VendorCardType extends Vendor {
   classname?: string;
 }
 
-export { VendorCard };
+export { VendorCardType };

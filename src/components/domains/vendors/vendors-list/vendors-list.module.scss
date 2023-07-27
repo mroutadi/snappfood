@@ -1,0 +1,13 @@
+.VendorsList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: auto;
+  width: calc(100% - 32px);
+
+  &__title {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+}

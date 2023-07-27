@@ -1,7 +1,7 @@
 import { Link } from "../../../shared";
 import Image from "../../../shared/image/image.component";
 import { isExpressDelivery, deliveryFee, classnames } from "../../../../utils";
-import { VendorCard } from './vendor-card.models';
+import { VendorCardType} from './vendor-card.models';
 import styles from './vendor-card.module.scss';
 
 function VendorCard(
@@ -14,7 +14,7 @@ function VendorCard(
     isExpress,
     deliveryPrice,
     classname
-  }: VendorCard) {
+  }: VendorCardType) {
   return <Link href={link}>
     <div className={classnames(styles.VendorCard, `${classname}`)}>
       <div className={styles.VendorCard__header}>
