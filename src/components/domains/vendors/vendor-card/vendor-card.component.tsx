@@ -1,7 +1,8 @@
 import { Link } from "../../../shared";
-import Image from "../../../shared/image/image.component";
-import { isExpressDelivery, deliveryFee, classnames } from "../../../../utils";
+import { Image } from "../../../shared/image";
+import {isExpressDelivery, deliveryFee, classnames, toFa, rate as rateUtil} from "../../../../utils";
 import { VendorCardType} from './vendor-card.models';
+import Star from '../../../../../public/svg/star.svg';
 import styles from './vendor-card.module.scss';
 
 function VendorCard(
@@ -13,8 +14,11 @@ function VendorCard(
     description,
     isExpress,
     deliveryPrice,
+    rate,
+    commentCount,
     classname
   }: VendorCardType) {
+  const {rateText, rateColor} = rateUtil({rate});
   return <Link href={link}>
     <div className={classnames(styles.VendorCard, `${classname}`)}>
       <div className={styles.VendorCard__header}>
@@ -39,9 +43,20 @@ function VendorCard(
           <h3 className={styles.VendorCard__title}>
             {title}
           </h3>
-          <span className={styles.VendorCard__rate}></span>
+          <span>
+            {commentCount && <span className={styles.VendorCard__comments}>({toFa(commentCount)})</span>}
+            <span
+              className={styles.VendorCard__rate}
+              style={{
+              backgroundColor: rateColor.bgColor,
+              color: rateColor.color
+            }}>
+              {rateText}
+              <Star style={{width: '12px',height: '12px', fill: rateColor.color}} fill={rateColor.color} color={rateColor.color} />
+            </span>
+          </span>
         </div>
-        <div className={styles.VendorCard__description}>{description}</div>
+        {description && <div className={styles.VendorCard__description}>{description}</div>}
         <div>
           <div>
             <span className={styles.VendorCard__deliveryType}>{isExpressDelivery(isExpress)}</span>

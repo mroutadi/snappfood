@@ -12,13 +12,7 @@ const VendorsList = forwardRef(({ vendors, className }, ref) => {
       }
       return <VendorCard
         key={item.id}
-        cover={item.cover}
-        link={item.link}
-        logo={item.logo}
-        title={item.title}
-        description={item.description}
-        isExpress={item.isExpress}
-        deliveryPrice={item.deliveryPrice}
+        {...item}
       />
     })}
   </div>

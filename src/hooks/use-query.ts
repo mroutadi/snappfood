@@ -22,7 +22,7 @@ function useQuery(
     apiData,
     onError = () => {},
     onSuccess,
-    page = 1,
+    page = 0,
     revalidateIfStale = false,
     revalidateOnMount = true,
     revalidateOnFocus = false,

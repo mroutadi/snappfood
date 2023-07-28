@@ -15,6 +15,8 @@
 
   &__logo {
     background: #fff;
+    font-size: 12px;
+    overflow: hidden;
     width: 64px;
     height: 64px;
     padding: 4px;
@@ -36,7 +38,8 @@
   }
 
   &__titleRate {
-
+    display: flex;
+    justify-content: space-between;
   }
 
   &__title {
@@ -46,7 +49,22 @@
   }
 
   &__rate {
+    padding: 2px;
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 4px;
+    color: #404040;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-right: 4px;
+  }
 
+  &__comments {
+    font-size: 12px;
+    font-weight: 400;
+    color: #a3a3a3;
   }
 
   &__description {

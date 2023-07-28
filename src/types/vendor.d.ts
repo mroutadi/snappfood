@@ -4,6 +4,8 @@ declare global {
     cover: string,
     logo: string,
     title: string,
+    rate: number,
+    commentCount: number,
     description: string,
     isExpress: boolean,
     deliveryPrice: number
