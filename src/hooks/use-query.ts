@@ -42,7 +42,7 @@ function useQuery(
     },
     [setData]
   );
-  const finalPageNumber = Math.ceil(data.totalCount / itemsPerPage);
+  const finalPageNumber = Math.ceil(data.totalCount / itemsPerPage) - 1;
   const nextPageNumber = getNextPageNumber(finalPageNumber, data.currentPage);
 
   const fetchNextPage = useCallback(() => {
