@@ -1,4 +1,4 @@
-import { isNumber, isString } from "./type";
+import { isNumber, isString } from "../type";
 
 function toFa(input?: string | number | null): string {
   if (!(isNumber(input) || isString(input))) {
@@ -9,10 +9,11 @@ function toFa(input?: string | number | null): string {
 
 function toEn(input?: string | number | null): string {
   if (!(isNumber(input) || isString(input))) return '';
-  return (input + '').replace(/[۰-۹]/g, (d) => toString('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
+  return (input + '').replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
 }
 
 function toCurrency(value: number | string) {
+  if (!value) return '.'
   let price = Number(toEn(value?.toString()?.replace?.(/,/g, '')));
 
   if (isNaN(price)) {

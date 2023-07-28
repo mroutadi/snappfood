@@ -1,4 +1,4 @@
-import { toCurrency } from "./number";
+import { toCurrency } from "../number";
 
 function deliveryFee(deliveryFee: number) {
   if (deliveryFee === 0) return 'رایگان';

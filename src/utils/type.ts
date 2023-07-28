@@ -5,7 +5,7 @@ function isNumber(value: unknown): value is number {
 }
 
 function isString(value: unknown): value is string {
-  if (typeof value === 'undefined') return;
+  if (typeof value === 'undefined') return false;
   return typeof value === 'string';
 }
 
