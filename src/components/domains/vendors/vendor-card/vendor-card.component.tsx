@@ -44,7 +44,9 @@ function VendorCard(
             {title}
           </h3>
           <span>
-            {commentCount && <span className={styles.VendorCard__comments}>({toFa(commentCount)})</span>}
+            {commentCount && <span className={styles.VendorCard__comments}>
+              ({toFa(commentCount)})
+            </span>}
             <span
               className={styles.VendorCard__rate}
               style={{
@@ -52,15 +54,26 @@ function VendorCard(
               color: rateColor.color
             }}>
               {rateText}
-              <Star style={{width: '12px',height: '12px', fill: rateColor.color}} fill={rateColor.color} color={rateColor.color} />
+              <Star
+                className={styles.VendorCard__rateStar}
+                style={{ fill: rateColor.color }}
+                fill={rateColor.color}
+                color={rateColor.color}
+              />
             </span>
           </span>
         </div>
-        {description && <div className={styles.VendorCard__description}>{description}</div>}
+        {description && <div className={styles.VendorCard__description}>
+          {description}
+        </div>}
         <div>
           <div>
-            <span className={styles.VendorCard__deliveryType}>{isExpressDelivery(isExpress)}</span>
-            <span className={styles.VendorCard__deliveryPrice}>{deliveryFee(deliveryPrice)}</span>
+            <span className={styles.VendorCard__deliveryType}>
+              {isExpressDelivery(isExpress)}
+            </span>
+            <span className={styles.VendorCard__deliveryPrice}>
+              {deliveryFee(deliveryPrice)}
+            </span>
           </div>
         </div>
       </div>

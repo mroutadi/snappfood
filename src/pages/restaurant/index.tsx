@@ -1,6 +1,7 @@
-import {getApiVendors} from "../../api";
-import {VendorsList} from "../../components/domains/vendors";
-import {useQuery} from "../../hooks/use-query";
+import { LegacyRef } from 'react';
+import { getApiVendors } from "../../api";
+import { VendorsList } from "../../components/domains/vendors";
+import { useQuery } from "../../hooks/use-query";
 import { useIntersection } from "../../hooks/use-intersection";
 
 export default function Restaurant() {
@@ -20,7 +21,7 @@ export default function Restaurant() {
 
   return <div>
     <VendorsList vendors={data.items || []} />
-    <div ref={VendorsListReference}>
+    <div ref={VendorsListReference as LegacyRef<HTMLDivElement>}>
     </div>
   </div>
 }
