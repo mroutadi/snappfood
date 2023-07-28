@@ -1,8 +1,8 @@
-import {VendorTypes} from "../../constants";
+import { VendorTypes } from "../../constants";
 
-type VendorProps = ({
+type VendorProps = {
   type: typeof VendorTypes.text;
-  data: string
+  data: string;
 } | {
   type: typeof VendorTypes.vendor;
   data: {
@@ -16,12 +16,12 @@ type VendorProps = ({
     description: string;
     isZFExpress: boolean;
     deliveryFee: number;
-  }
-})
+  };
+};
 
-type VendorReturnType = ({
+type VendorReturnType = {
   type: typeof VendorTypes.text;
-  text: string
+  text: string;
 } | {
   type: typeof VendorTypes.vendor;
   id: string;
@@ -34,15 +34,30 @@ type VendorReturnType = ({
   description: string;
   isExpress: boolean;
   deliveryPrice: number;
-})
+};
 
 const vendorTransformer = (item: VendorProps): VendorReturnType => {
-  const {type, data} = item;
-  if (type === VendorTypes.text) return {
-    type: VendorTypes.text,
-    text: data as string
+  const { type, data } = item;
+  if (type === VendorTypes.text) {
+    return {
+      type: VendorTypes.text,
+      text: data as string,
+    };
   }
-  const { id, menuUrl, backgroundImage, rate, commentCount, logo, title, description, isZFExpress, deliveryFee } = data;
+
+  const {
+    id,
+    menuUrl,
+    backgroundImage,
+    rate,
+    commentCount,
+    logo,
+    title,
+    description,
+    isZFExpress,
+    deliveryFee,
+  } = data;
+
   return {
     type: VendorTypes.vendor,
     id,
@@ -54,15 +69,15 @@ const vendorTransformer = (item: VendorProps): VendorReturnType => {
     link: menuUrl,
     cover: backgroundImage,
     isExpress: isZFExpress,
-    deliveryPrice: deliveryFee
-  }
-};
-
-const transformer = (data) => {
-  return {
-    items: data.data.finalResult.map(vendorTransformer),
-    totalCount: data.data.count
+    deliveryPrice: deliveryFee,
   };
 };
 
-export { transformer };
+const transformer = (data: { data: { finalResult: VendorProps[]; count: number } }): { items: VendorReturnType[]; totalCount: number } => {
+  return {
+    items: data.data.finalResult.map(vendorTransformer),
+    totalCount: data.data.count,
+  };
+};
+
+export { transformer, VendorReturnType };

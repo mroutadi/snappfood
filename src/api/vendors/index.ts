@@ -1,11 +1,11 @@
-import {apiRequest} from '../../services/api/configuration';
-import { transformer } from './transformer';
+import { apiRequest } from '../../services/api/configuration';
+import { transformer, VendorReturnType } from './transformer';
 
 const urlVendors = 'restaurant/vendors-list';
 
-const getApiVendors = apiRequest({
+const getApiVendors: () => Promise<VendorReturnType> = apiRequest<unknown, VendorReturnType>({
   url: urlVendors,
-  responseTransformer: transformer
+  responseTransformer: transformer,
 });
 
 export { getApiVendors };

@@ -1,12 +1,14 @@
 import { forwardRef } from 'react';
-import { default as NextLink, LinkProps as NextLinkProps } from 'next/link';
+import { default as NextLink } from 'next/link';
+import { LinkProps } from './link.models';
 
-const Link = forwardRef<HTMLAnchorElement, NextLinkProps>(
+const Link = forwardRef<HTMLAnchorElement, LinkProps>(
   function NextLinkComposed(props, ref) {
-    const { children } = props;
+    const { children, className } = props;
     return (
       <NextLink
         {...props}
+        className={className}
         ref={ref}
       >
         {children}
