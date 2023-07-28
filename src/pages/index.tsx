@@ -1,15 +1,9 @@
-import Head from "next/head";
-import { VendorsList } from "../components/domains/vendors";
+import { Home as HomeComponent } from '../components/domains/home';
 
 export default function Home() {
   return (
     <div>
-      <Head>
-        <title>SnappFood</title>
-        <meta name="description" content="Developed by Mohammad Outadi" />
-        <link rel="icon" href="/favicon.png" />
-      </Head>
-      <VendorsList />
+      <HomeComponent />
     </div>
   )
 }

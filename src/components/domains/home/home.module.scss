@@ -1,0 +1,14 @@
+.Home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__restaurantButton {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #ff00a4;
+    color: #fff;
+  }
+}
