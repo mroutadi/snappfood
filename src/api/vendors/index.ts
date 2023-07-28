@@ -3,7 +3,7 @@ import { transformer, VendorReturnType } from './transformer';
 
 const urlVendors = 'restaurant/vendors-list';
 
-const getApiVendors: () => Promise<VendorReturnType> = apiRequest<unknown, VendorReturnType>({
+const getApiVendors: () => Promise<VendorReturnType> = apiRequest({
   url: urlVendors,
   responseTransformer: transformer,
 });
