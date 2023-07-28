@@ -1,7 +1,6 @@
-import { useEffect, useRef, MutableRefObject } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface Params {
-  root?: MutableRefObject<HTMLElement>;
   onIntersect?: () => void;
   threshold?: number;
   rootMargin?: string;
@@ -9,14 +8,13 @@ interface Params {
 }
 
 function useIntersection<TargetElement extends HTMLElement>({
-    root,
     onIntersect,
     threshold = 0.7,
     rootMargin = '0px',
     enabled = true
   }: Params) {
   const onIntersectRef = useRef(onIntersect);
-  const targetRef = useRef<TargetElement>(null);
+  const targetRef = useRef<TargetElement>();
 
   useEffect(() => {
     onIntersectRef.current = onIntersect;
@@ -31,9 +29,8 @@ function useIntersection<TargetElement extends HTMLElement>({
       (entries) =>
         entries.forEach((entry) => entry.isIntersecting && onIntersectRef.current?.()),
       {
-        root: root && root.current,
-        rootMargin,
-        threshold
+        rootMargin: rootMargin as string,
+        threshold: threshold as number | number[]
       }
     );
 
@@ -48,7 +45,7 @@ function useIntersection<TargetElement extends HTMLElement>({
     return () => {
       observer.unobserve(el);
     };
-  }, [root, enabled, rootMargin, threshold]);
+  }, [enabled, rootMargin, threshold]);
 
   return { targetRef };
 }
