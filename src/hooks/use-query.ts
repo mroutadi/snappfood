@@ -1,5 +1,7 @@
-import {useState} from "react";
+import { useState, useCallback } from "react";
 import useSWR from 'swr'
+import {RequestKeys} from "../constants";
+import {getNextPageNumber} from "../utils";
 
 interface UseQueryProps {
   apiCall: () => void;
@@ -29,26 +31,41 @@ function useQuery(
   }: UseQueryProps) {
   const [data, setData] = useState({
     items: [],
-    pagination: {
-      currentPage: page,
-      itemsPerPage,
-      totalCount: 0
-    }
+    currentPage: page,
+    itemsPerPage,
+    totalCount: 0
   });
 
-  const fetcher = apiCall || (() => {});
+  const fetchPage = useCallback(
+    (n: number) => {
+      setData(prevState => ({ ...prevState, currentPage: n }));
+    },
+    [setData]
+  );
+  const finalPageNumber = Math.ceil(data.totalCount / itemsPerPage);
+  const nextPageNumber = getNextPageNumber(finalPageNumber, data.currentPage);
 
-  const { error, isValidating: pending } = useSWR(apiData, fetcher, {
+  const fetchNextPage = useCallback(() => {
+    !!nextPageNumber && fetchPage(nextPageNumber)
+  }, [fetchPage, nextPageNumber]);
+  const fetcher = apiCall || (() => {});
+  const apiParams = {
+    ...apiData,
+    [RequestKeys.page]: data.currentPage,
+    [RequestKeys.pageSize]: data.itemsPerPage
+  }
+  const { error, isValidating: pending } = useSWR(apiParams, fetcher, {
     onError,
     onSuccess: (res) => {
       onSuccess?.(res);
       const { items, totalCount } = res;
       setData(prevState => ({
-        items,
-        pagination: {
-          ...prevState.pagination,
-          totalCount
-        }
+        ...prevState,
+        totalCount,
+        items: [
+          ...prevState.items,
+          ...items
+        ]
       }));
     },
     revalidateIfStale,
@@ -57,11 +74,11 @@ function useQuery(
     revalidateOnReconnect,
     shouldRetryOnError: false
   });
-
   return {
     data,
     pending,
     hasError: !!error,
+    fetchNextPage
   }
 }
 

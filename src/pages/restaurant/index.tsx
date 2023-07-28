@@ -3,7 +3,7 @@ import {VendorsList} from "../../components/domains/vendors";
 import {useQuery} from "../../hooks/use-query";
 
 export default function Restaurant() {
-  const {data} = useQuery({
+  const {data, fetchNextPage} = useQuery({
     apiCall: getApiVendors,
     apiData: {
       lat: 35.730,
@@ -11,6 +11,7 @@ export default function Restaurant() {
     }
   })
   return <div>
-    <VendorsList vendors={data.items} />
+    <VendorsList vendors={data.items || []} />
+    <button onClick={fetchNextPage}>QWER</button>
   </div>
 }
