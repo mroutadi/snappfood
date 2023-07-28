@@ -1,5 +1,5 @@
-import { RatesColors } from "../constants";
-import { toFa } from "./number";
+import { RatesColors } from "../../constants";
+import { toFa } from "../number";
 
 function rate({rate}: {rate: number}) {
   return {

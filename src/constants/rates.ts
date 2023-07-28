@@ -1,4 +1,10 @@
-const RatesColors = {
+interface RatesColorsType {
+  [rate: number]: {
+    color: string;
+    bgColor: string;
+  };
+}
+const RatesColors: RatesColorsType = {
   45: {
     color: '#3f7e00',
     bgColor: 'rgba(63, 126, 0, 0.08)'
