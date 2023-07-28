@@ -20,7 +20,7 @@ function VendorCard(
       <div className={styles.VendorCard__header}>
         <Image
           src={cover}
-          alt='vendor'
+          alt={title}
           layout={'fill'}
         />
         <div

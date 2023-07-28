@@ -8,6 +8,7 @@ const vendorTransformer = (item) => {
   }
   return {
     type,
+    id: data.id,
     link: data.menuUrl,
     cover: data.backgroundImage,
     logo: data.logo,

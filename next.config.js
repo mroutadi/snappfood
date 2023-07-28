@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ['cdn.snappfood.ir'],
+    domains: ['cdn.snappfood.ir', 'www.zoodfood.com'],
   }
 }
 
